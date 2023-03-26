@@ -53,12 +53,9 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script>
-        axios({
-            method: 'get',
-            url: '/api/posts'
-        })
+        axios.get('api/posts')
         .then(response => console.log(response))
-        .catch();
+        .catch(error => console.log(error));
     </script>
   </body>
 </html>

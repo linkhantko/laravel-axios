@@ -1,2 +1,19 @@
 ## axios usage
  axios().then().catch();
+
+
+=> axios() should have method, url,
+
+
+=> usage 1
+
+    axios({
+        method: 'get',
+        url: '/api/posts'
+    })
+    .then(response => console.log(response))
+    .catch(error => console.log(error));
+
+=> usage 2
+
+    axios.get(' this is url ').then().catch();
