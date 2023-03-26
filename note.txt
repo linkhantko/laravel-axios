@@ -1,0 +1,2 @@
+## axios usage
+ axios().then().catch();
