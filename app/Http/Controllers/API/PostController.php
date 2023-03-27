@@ -26,7 +26,7 @@ class PostController extends Controller
             'title' => $request->title,
             'description' => $request->description
         ]);
-        return response()->json($post, 200);
+        return response()->json([$post, 'msg' => 'Created Successful'], 200);
     }
 
     /**

@@ -26,7 +26,9 @@
             </div>
             <div class="col-md-4">
                 <h4>Create</h4>
+                <span class="text-bg-succes" id="successMsg"></span>
                 <form name="myForm">
+                    @csrf
                     <label for="" class="my-2">Title</label>
                     <input type="text" name="title" id="" class="form-control">
 
@@ -57,11 +59,20 @@
         //Create
         var myForm = document.forms['myForm'];
         var titleInput = myForm['title'];
-        var description = myForm['description'];
+        var descriptionInput = myForm['description'];
 
         myForm.onsubmit = function(e) {
             e.preventDefault();
-            console.log(titleInput.value);
+
+            axios.post('/api/posts',{
+                title: titleInput.value,
+                description: descriptionInput.value,
+            })
+            .then(response =>{
+                document.getElementById('successMsg').innerHTML = response.data.msg
+            console.log(response)
+            })
+            .catch(error => console.log(error));
         }
 
     </script>
