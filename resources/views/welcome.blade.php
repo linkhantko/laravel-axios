@@ -20,22 +20,13 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>LKK</td>
-                            <td>Lin Khant Ko</td>
-                            <td>
-                                <button class="btn btn-primary">Edit</button>
-                                <button class="btn btn-danger">Delete</button>
-                            </td>
-                        </tr>
+                    <tbody id="tbody">
                     </tbody>
                 </table>
             </div>
             <div class="col-md-4">
                 <h4>Create</h4>
-                <form action="">
+                <form name="myForm">
                     <label for="" class="my-2">Title</label>
                     <input type="text" name="title" id="" class="form-control">
 
@@ -53,9 +44,26 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script>
+        // Show
         axios.get('api/posts')
-        .then(response => console.log(response))
+        .then(response => {
+            var tableBody = document.getElementById('tbody');
+            response.data.forEach(item => {
+            tableBody.innerHTML += '<tr><td>'+item.id+'</td><td>'+item.title+'</td><td>'+item.description+'</td><td><button class="btn btn-primary">Edit</button><button class="btn btn-danger">Delete</button></td></tr>'
+            });
+        })
         .catch(error => console.log(error));
+
+        //Create
+        var myForm = document.forms['myForm'];
+        var titleInput = myForm['title'];
+        var description = myForm['description'];
+
+        myForm.onsubmit = function(e) {
+            e.preventDefault();
+            console.log(titleInput.value);
+        }
+
     </script>
   </body>
 </html>
